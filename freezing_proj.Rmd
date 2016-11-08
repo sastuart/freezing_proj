@@ -1,0 +1,61 @@
+---
+title: 'Freezing under contrasting seasonality: Dry season survival as a stepping
+  stone to cold tolerance'
+author: "Stephanie Stuart"
+date: "8 November 2016"
+output: 
+  html_document:
+    fig_caption: true
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("freezing_packs.R")
+```
+
+SA Stuart,^1,2,3^ DD Ackerly,^1^ B Choat,^2,4^ MC Ball^2^
+
+1. Department of Integrative Biology, University of California, Berkeley, CA 94720, USA
+2. Plant Science Division, Research School of Biology, The Australian National University, Canberra, ACT 0200, Australia
+3. Department of Biological Sciences, Macquarie University, North Ryde, NSW 2109, Australia
+4. Hawkesbury Institute for the Environment, University of Western Sydney, Penrith, NSW, Australia
+
+## Abstract
+In spite of a well-established tropical origin for angiosperms, there is still little theoretical understanding of how this group radiated to become dominant at temperate latitudes. However, there is strong evidence of a cellular-level link between acclimation to drought and acclimation to freezing. We explored whether exposure to seasonal drought could confer resistance to freezing in members of five clades (Acacia, Myrtaceae, Pittosporum, Rubiaceae, Rutaceae) from three different climatic conditions: wet tropical, seasonally dry tropical, and cool temperate forests. Membrane damage was assessed using chlorophyll fluorescence at each degree from 0 to -10. Plants from the seasonally dry tropical site were significantly more resistant to freezing than their relatives from the wet tropical site. Most seasonally dry collections showed equal or greater tolerance to freezing than collections from the temperate site. This trend did not result from weather conditions; the temperate site experienced frost conditions at least 21 times in the 30 days before collection, while the dry tropical site did not experience temperatures below 13° C. There were also significant differences between clades independent of site. Acacia and Pittosporum showed relatively little injury independent of provenance and temperature, while severe damage occurred in members of Myrtaceae from all three sites. These results suggest that acclimation to seasonal drought can scaffold tolerance of moderate to severe frost events. In the context of evolutionary history, this could potentially have provided an adaptive intermediate between tropical climates (e.g., Late Cretaceous-Early Tertiary) and seasonally cold climates (e.g., post-Oligocene).   
+
+### Keywords
+Freezing, adaptation to cold, drought, tropical-temperate comparison, seasonally dry tropics, chlorophyll fluorescence, Fabaceae, Myrtaceae, Pittosporaceae, Rutaceae, Rhamnaceae, Oleaceae, Rubiaceae
+
+## Introduction
+Flowering plants share a common heritage: available evidence indicates they originated in a tropical environment. Data supporting this conclusion include a tropical rooting for the angiosperm phylogeny (Mathews & Donoghue, 1999; Qiu et al., 1999), the earliest occurrences of pollen and macrofossils (Gübeli et al., 1984; Brenner, 1996; Barrett & Willis, 2001), and the present-day distribution and ecophysiology of basal angiosperms (Feild et al., 2004). To this day, angiosperms are most diverse in tropical regions, suggesting that there is a cost to evolving cold tolerance (Woodward, 1987; Wiens & Donoghue, 2004). Nonetheless, flowering plants form a major part of most temperate ecosystems, and it is evident that tropical to temperate shifts were repeated many times. How did the tropical ancestors of today’s temperate angiosperms adapt to conditions that were potentially lethal?
+The purpose of this project was to investigate one potential path between the tropics and the temperate zone: the effects of seasonal drought on resilience to an unexpected freezing event.  In living tissue, the damage caused by both dehydration and freezing is surprisingly similar (Henckel, 1964; Steponkus, 1984). Like drought, the formation of extracellular ice generates low water potentials that can draw water out of cells (Ball et al., 2006). The loss of hydration shells around phospholipid membranes subsequently leads to membrane deformation and lysis (Uemura & Steponkus, 1997). There is accumulating evidence of a link between the molecular mechanisms of drought and freezing survival. A family of related proteins, known as dehydrins or late-embryogenesis abundant group 2 (LEA-2) proteins are regulated by both water deficit and cool temperatures. These small, intrinsically unordered proteins have both drought and cryoprotective function (Cheng et al., 2002; Bray, 2004; Chandra Babu et al., 2004; Puhakainen et al., 2004; Houde et al., 2004; Yin et al., 2006; Brini et al., 2007). Dehydrins are highly hydrophilic, and are thought to act as chaperones, binding to a variety of cellular structures, including enzymes, membranes, and the cytoskeleton in the absence of water (Dure et al., 1989; Close, 1997; Hara, 2010). 
+Given these links, we sought to test whether exposure to seasonal drought could provide protection an expected freeze at the tissue level. We compared the freezing tolerance of plants from two different tropical environments with similar temperature profiles but differing precipitation, and contrasted their freezing tolerance with that found in plants growing in, and acclimated to, seasonally cold conditions. Several studies have shown that tropically-collected specimens, or specimens grown from tropically-collected seed, are more sensitive to freezing than their temperate relatives (Sakai, 1970; Sakai & Weiser, 1973; Read & Hope, 1989; Cavender-Bares, 2007; Cavender‐Bares et al., 2011; Koehler et al., 2012) or ecological counterparts (Cunningham & Read, 2002, 2003). Bannister and Lord (2006) found that provenance was a better predictor of cold tolerance than either genus or family. In order to investigate whether adaptation to seasonal drought could protect taxa with different evolutionary histories against frost, we examined five widespread clades. In each clade, we focused on the minimum monophyletic unit found at all three sites (Figure 1; referred to by family names for convenience).
+
+![Figure X: Sample leaves from study taxa by clade and site. All leaves are shown at the same scale.](figures/leaves_by_clade.jpg)
+
+We tested two hypotheses. 1) Plants from the dry tropical site will show greater tolerance to freezing than plants collected from the wet tropical site, even without acclimation to freezing temperatures. 2) There will be phylogenetic trends in tolerance to cold. Members of clades which currently have a large latitudinal span will be more resistant to cold than members of clades with as small latitudinal span, even when collected from a common environment. 
+Hypothesis 1 was based on a possible analog of the shift from equable to temperate climates at higher latitudes during the evolution of angiosperms.  Our aim is not to recreate past shifts, as we cannot be certain about past adaptive environments of the clades studied. Rather, it is to explore whether the established link between drought and freezing is a plausible possible mechanism for transitions between dry tropical and temperate environments. 
+Hypothesis 2 explores evidence that some groups may have a greater predisposition to frost survival. We expect that clades which currently have a large latitudinal span will be more resistant to freezing--even when the particular species in question is collected from a tropical environment, and has not previously been exposed to freezing. For specific predictions for each of the clades studied, see Table 1.
+
+```{r hypothesis2_table, echo=FALSE}
+hyp2 <- read.csv("tables/hypothesis2_table.csv")
+
+kable(hyp2, caption="Table 1. Hypothesized resistance to freezing by clade, based on latitudinal span",
+      col.names=c("Clade","Lowest Latitude (N or S)","Highest Latitude (N or S)","Latitudinal Span (total)","Prediction"),
+      digits=0,
+      align=c('c'))
+```
+
+This hypothesis stems from evidence of genetic variation in the ability to acclimate to cold (Rehfeldt, 1986; Cavender-Bares, 2007; Zhen & Ungerer, 2008; Koehler et al., 2012). It is also widely believed that some groups of plants show less ability than others to evolve cold acclimation (Allen & Ort, 2001; Hannah et al., 2006). Without fossil and paleoclimate evidence, we cannot at this stage determine the causality of this relationship--whether these groups have a large range because they were predisposed to tolerate cold, or have evolved to tolerate cold because they have a large range--however, we do assume that large range and cold tolerance are correlated.
+
+## Materials and Methods
+
+### Site selection
+Three Australian rainforests sites were chosen: a cold and wet temperate site at Mt. Field National Park in Tasmania (denoted CW in figures), a warm and dry tropical site at Forty Mile Scrub National Park in Queensland (WD), and a warm and wet tropical site at the Australian Canopy Crane Research Station in Daintree National Park (WW), also in Queensland. Within Australia, the term rainforest is frequently used to describe pockets of thin-leaved, or notophyll, vegetation found in sites with a high annual rainfall across the east coast (Webb, 1959, 1968; Specht, 1981; Webb & Tracey, 1981). Australia’s wet tropical rainforests are believed to date to the late Cretaceous or early Tertiary (Christophel & Greenwood, 1989; Hill, 1991; Kershaw et al., 1991). However, there were also locally arid areas at this time (Martin, 2006), and there is evidence that dry tropical forests may also have existed (Greenwood, 1996). By contrast, the first evidence of plants adapted to seasonal cold appears in the Australian paleobotanical record in the Oligocene (Kemp, 1978; Hill, 1984; Macphail et al., 1991).
+
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
