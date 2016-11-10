@@ -47,12 +47,115 @@ kable(hyp2, caption="Table 1. Hypothesized resistance to freezing by clade, base
       align=c('c'))
 ```
 
-This hypothesis stems from evidence of genetic variation in the ability to acclimate to cold (Rehfeldt, 1986; Cavender-Bares, 2007; Zhen & Ungerer, 2008; Koehler et al., 2012). It is also widely believed that some groups of plants show less ability than others to evolve cold acclimation (Allen & Ort, 2001; Hannah et al., 2006). Without fossil and paleoclimate evidence, we cannot at this stage determine the causality of this relationship--whether these groups have a large range because they were predisposed to tolerate cold, or have evolved to tolerate cold because they have a large range--however, we do assume that large range and cold tolerance are correlated.
+This hypothesis stems from evidence of genetic variation in the ability to acclimate to cold (Rehfeldt, 1986; Cavender-Bares, 2007; Zhen & Ungerer, 2008; Koehler et al., 2012). It is also widely believed that some groups of plants show less ability than others to evolve cold acclimation (Allen & Ort, 2001; Hannah et al., 2006). Without fossil and paleoclimate evidence, we cannot at determine the causality of this relationship--whether these groups have a large range because they were predisposed to tolerate cold, or have evolved to tolerate cold because they have a large range--however, we do assume that large range and cold tolerance are correlated.
 
 ## Materials and Methods
 
 ### Site selection
-Three Australian rainforests sites were chosen: a cold and wet temperate site at Mt. Field National Park in Tasmania (denoted CW in figures), a warm and dry tropical site at Forty Mile Scrub National Park in Queensland (WD), and a warm and wet tropical site at the Australian Canopy Crane Research Station in Daintree National Park (WW), also in Queensland. Within Australia, the term rainforest is frequently used to describe pockets of thin-leaved, or notophyll, vegetation found in sites with a high annual rainfall across the east coast (Webb, 1959, 1968; Specht, 1981; Webb & Tracey, 1981). Australia’s wet tropical rainforests are believed to date to the late Cretaceous or early Tertiary (Christophel & Greenwood, 1989; Hill, 1991; Kershaw et al., 1991). However, there were also locally arid areas at this time (Martin, 2006), and there is evidence that dry tropical forests may also have existed (Greenwood, 1996). By contrast, the first evidence of plants adapted to seasonal cold appears in the Australian paleobotanical record in the Oligocene (Kemp, 1978; Hill, 1984; Macphail et al., 1991).
+Three Australian rainforests sites were chosen: a cold and wet temperate site at Mt. Field National Park in Tasmania (CW in figures), a warm and dry tropical site at Forty Mile Scrub National Park in Queensland (WD), and a warm and wet tropical site at the Australian Canopy Crane Research Station in Daintree National Park (WW), also in Queensland. Within Australia, the term rainforest is frequently used to describe pockets of thin-leaved, or notophyll, vegetation found in sites with a high annual rainfall across the east coast (Webb, 1959, 1968; Specht, 1981; Webb & Tracey, 1981). Australia’s wet tropical rainforests are believed to date to the late Cretaceous or early Tertiary (Christophel & Greenwood, 1989; Hill, 1991; Kershaw et al., 1991). However, there were also locally arid areas at this time (Martin, 2006), and there is evidence that dry tropical forests may also have existed (Greenwood, 1996). By contrast, the first evidence of plants adapted to seasonal cold appears in the Australian paleobotanical record in the Oligocene (Kemp, 1978; Hill, 1984; Macphail et al., 1991).
+
+Local temperature records from stations near each site demonstrate differences in temperature and rainfall (Australian Government Bureau of Meteorology, 2011; Mark Twist, Undara Experience Resort, pers. com.) While all three communities experience seasonality, the total amount of rainfall at the wet tropical site ensures a consistent supply of water. The dry tropical site experiences colder winter minima than the wet tropical site, although these temperatures are well above freezing, and the winter highs consistently exceed those at the wet tropical site. This results in an overlapping temperature range between the two warm sites (Figure 2). 
+
+```{r climate_fig, echo=FALSE}
+
+### Weather stations for Canopy Crane (cc)
+
+# Low Islands (Station #31037) ----------
+# Minimum temperature
+lil.min <- read.csv("climate/canopy_crane/")
+# Maximum temperature
+lil.max <- read.csv("climate/canopy_crane/")
+# Rainfall/precipitation
+lil.r <- read.csv("climate/canopy_crane/")
+
+# Cairns Aero (Station #31011) ----------
+# Minimum temperature
+cae.min <- read.csv("climate/canopy_crane/")
+# Maximum temperature
+cae.max <- read.csv("climate/canopy_crane/")
+# Rainfall/precipitation
+cae.r <- read.csv("climate/canopy_crane/")
+
+# Port Douglas -- Warner St (Station #31052) ----------
+# Minimum temperature
+ptd.min <- read.csv("climate/canopy_crane/")
+# Maximum temperature
+ptd.max <- read.csv("climate/canopy_crane/")
+# Rainfall/precipitation
+ptd.r <- read.csv("climate/canopy_crane/")
+
+
+### Weather stations for Forty Mile Scrub (fm)
+
+# Mt Suprise Township (Station #30036) ----------
+# Minimum temperature
+msp.min <- read.csv("climate/forty_mile/")
+# Maximum temperature
+msp.max <- read.csv("climate/forty_mile/")
+# Rainfall/precipitation
+msp.r <- read.csv("climate/forty_mile/")
+
+# Georgetown Post Office (Station #30018) [GIVE YEARS] ----------
+# Minimum temperature
+gpo.min <- read.csv("climate/forty_mile/")
+# Maximum temperature
+gpo.max <- read.csv("climate/forty_mile/")
+# Rainfall/precipitation
+gpo.r <- read.csv("climate/forty_mile/")
+
+# Georgetown Airport (Station #30124) [GIVE YEARS] ----------
+# Minimum temperature
+gap.min <- read.csv("climate/forty_mile/")
+# Maximum temperature
+gap.max <- read.csv("climate/forty_mile/")
+# Rainfall/precipitation
+gap.r <- read.csv("climate/forty_mile/")
+
+# Charters Towers Post Office (Station #34002) [GIVE YEARS] ----------
+# Minimum temperature
+ctp.min <- read.csv("climate/forty_mile/")
+# Maximum temperature
+ctp.max <- read.csv("climate/forty_mile/")
+# Rainfall/precipitation
+ctp.r <- read.csv("climate/forty_mile/")
+
+# Charters Towers Airport (Station #34084) [GIVE YEARS] ----------
+# Minimum temperature
+ctp.min <- read.csv("climate/forty_mile/")
+# Maximum temperature
+ctp.max <- read.csv("climate/forty_mile/")
+# Rainfall/precipitation
+ctp.r <- read.csv("climate/forty_mile/")
+
+### Weather stations for Mount Field National Park (mf)
+
+# Bushy Park Estates (Station #95003) ----------
+# Minimum temperature
+bpe.min <- read.csv("climate/mount_field/")
+# Maximum temperature
+bpe.max <- read.csv("climate/mount_field/")
+# Rainfall/precipitation
+bpe.r <- read.csv("climate/mount_field/")
+
+# Maydena Post Office (Station #95063) ----------
+# Minimum temperature
+may.min <- read.csv("climate/mount_field/")
+# Maximum temperature
+may.max <- read.csv("climate/mount_field/")
+# Rainfall/precipitation
+may.r <- read.csv("climate/mount_field/")
+
+# Ouse Fire Station (Station #95048) ----------
+# Minimum temperature
+ofs.min <- read.csv("climate/mount_field/")
+# Maximum temperature
+ofs.max <- read.csv("climate/mount_field/")
+# Rainfall/precipitation
+ofs.r <- read.csv("climate/mount_field/")
+
+```
+
+The lowest temperature in the month before sample collection at the dry tropical site was 13.6°C (Table 2), well above temperatures needed to induce frost acclimation (Xin & Browse, 2000). By contrast, minimums at the temperate site would have induced acclimation to freezing. Local temperature records indicated 21 nights with freezing conditions in the 30 days before sample collection. The lowest temperature recorded during this period was -3.9°C (Australian Government Bureau of Meteorology, 2011).
 
 
 ```{r pressure, echo=FALSE}
