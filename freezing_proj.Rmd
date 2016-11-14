@@ -53,10 +53,34 @@ This hypothesis stems from evidence of genetic variation in the ability to accli
 
 ### Site selection
 Three Australian rainforests sites were chosen: a cold and wet temperate site at Mt. Field National Park in Tasmania (CW in figures), a warm and dry tropical site at Forty Mile Scrub National Park in Queensland (WD), and a warm and wet tropical site at the Australian Canopy Crane Research Station in Daintree National Park (WW), also in Queensland. Within Australia, the term rainforest is frequently used to describe pockets of thin-leaved, or notophyll, vegetation found in sites with a high annual rainfall across the east coast (Webb, 1959, 1968; Specht, 1981; Webb & Tracey, 1981). Australia’s wet tropical rainforests are believed to date to the late Cretaceous or early Tertiary (Christophel & Greenwood, 1989; Hill, 1991; Kershaw et al., 1991). However, there were also locally arid areas at this time (Martin, 2006), and there is evidence that dry tropical forests may also have existed (Greenwood, 1996). By contrast, the first evidence of plants adapted to seasonal cold appears in the Australian paleobotanical record in the Oligocene (Kemp, 1978; Hill, 1984; Macphail et al., 1991).
+[TK: Note here that some of the species included are considered by some authors 'wet schlerophyll'; these two vegetation types intergrade and occur under the same climatic conditions.]
 
 Local temperature records from stations near each site demonstrate differences in temperature and rainfall (Australian Government Bureau of Meteorology, 2011; Mark Twist, Undara Experience Resort, pers. com.) While all three communities experience seasonality, the total amount of rainfall at the wet tropical site ensures a consistent supply of water. The dry tropical site experiences colder winter minima than the wet tropical site, although these temperatures are well above freezing, and the winter highs consistently exceed those at the wet tropical site. This results in an overlapping temperature range between the two warm sites (Figure 2). 
 
 ```{r climate_fig, echo=FALSE}
+
+nums <- c(2.1,3.4,3.8,3.9,2.9,5)
+barplot(nums)
+plot(mtcars)
+
+# Read in data downloaded from the Australian Bureau of Meterology
+
+### Data cleaning functions
+rain.cleaner <- function(x) {
+  # change dataframe column labels to standard labels
+  names(x) <- c("product", "station", "year", "month",
+                "day", "rain","days.accum","quality")
+  # process year month and date as a Date object
+  require(lubridate)
+  x$date <- ymd(with(x, paste(year, month, day)))
+  # if the number of days accumulated precip is more than one, delete that observation
+  mult.days <- with(x, which(days.accum != 1 & !(is.na(days.accum))))
+  x$rain[mult.days] <- NA
+  x$days.accum[mult.days] <- NA
+  # if the number of days accumulated precip is not recorded, delete that observation
+  x$rain[which(is.na(x["days.accum"]))] <- NA
+  return(x)
+  }
 
 ### Weather stations for Canopy Crane (cc)
 
@@ -67,6 +91,17 @@ lil.min <- read.csv("climate/canopy_crane/")
 lil.max <- read.csv("climate/canopy_crane/")
 # Rainfall/precipitation
 lil.r <- read.csv("climate/canopy_crane/")
+
+# Cape Tribulation Store (Station #31012) ----------
+# Minimum temperature
+cts.min <- read.csv("climate/canopy_crane/")
+# Maximum temperature
+cts.max <- read.csv("climate/canopy_crane/")
+# Rainfall/precipitation
+cts.r.raw <- 
+  read.csv("climate/canopy_crane/cape_trib_store_31012_rainfall_data.csv")
+cts.r <- rain.cleaner(cts.r.raw)
+
 
 # Cairns Aero (Station #31011) ----------
 # Minimum temperature
@@ -158,7 +193,7 @@ ofs.r <- read.csv("climate/mount_field/")
 # Set two graphs to be plotted side-by-side
 par(mfrow=c(1,2))
 
-#### Rainfall
+#### Rainfall Plot ------
 
 plot(cc.rain.mean ~ names(cc.rain.mean), type = "o",
        col="darkgreen", ylim = c(0,810),
