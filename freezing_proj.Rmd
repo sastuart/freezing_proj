@@ -73,12 +73,26 @@ rain.cleaner <- function(x) {
   # process year month and date as a Date object
   require(lubridate)
   x$date <- ymd(with(x, paste(year, month, day)))
-  # if the number of days accumulated precip is more than one, delete that observation
-  mult.days <- with(x, which(days.accum != 1 & !(is.na(days.accum))))
-  x$rain[mult.days] <- NA
-  x$days.accum[mult.days] <- NA
-  # if the number of days accumulated precip is not recorded, delete that observation
-  x$rain[which(is.na(x["days.accum"]))] <- NA
+  return(x)
+  }
+
+min.cleaner <- function(x) {
+  # change dataframe column labels to standard labels
+  names(x) <- c("product", "station", "year", "month",
+                "day", "min","days.accum","quality")
+  # process year month and date as a Date object
+  require(lubridate)
+  x$date <- ymd(with(x, paste(year, month, day)))
+  return(x)
+  }
+
+max.cleaner <- function(x) {
+  # change dataframe column labels to standard labels
+  names(x) <- c("product", "station", "year", "month",
+                "day", "max","days.accum","quality")
+  # process year month and date as a Date object
+  require(lubridate)
+  x$date <- ymd(with(x, paste(year, month, day)))
   return(x)
   }
 
@@ -86,38 +100,38 @@ rain.cleaner <- function(x) {
 
 # Low Islands Lighthouse (Station #31037) ----------
 # Minimum temperature
-lil.min <- read.csv("climate/canopy_crane/")
+lil.min.raw <- read.csv("climate/canopy_crane/low_isles_lighthouse_31037_min_temp_data.csv")
+lil.min <- min.cleaner(lil.min.raw)
 # Maximum temperature
 lil.max.raw <- read.csv("climate/canopy_crane/cairns_aero_31011_max_temp_data.csv")
+lil.max <- max.cleaner(lil.max.raw)
 # Rainfall/precipitation 1942-2011
 lil.r.raw <- read.csv("climate/canopy_crane/cairns_aero_31011_rainfall_data.csv")
 lil.r <- rain.cleaner(lil.r.raw)
-  
+
 # Cape Tribulation Store (Station #31012) ----------
-# Minimum temperature
-cts.min <- read.csv("climate/canopy_crane/")
-# Maximum temperature
-cts.max <- read.csv("climate/canopy_crane/")
-# Rainfall/precipitation
 cts.r.raw <- 
   read.csv("climate/canopy_crane/cape_trib_store_31012_rainfall_data.csv")
 cts.r <- rain.cleaner(cts.r.raw)
 
-
 # Cairns Aero (Station #31011) ----------
 # Minimum temperature
-cae.min <- read.csv("climate/canopy_crane/")
+cae.min.raw <- read.csv("climate/canopy_crane/cairns_aero_31011_min_temp_data.csv")
+cae.min <- min.cleaner(cae.min.raw)
 # Maximum temperature
-cae.max <- read.csv("climate/canopy_crane/")
+cae.max.raw <- read.csv("climate/canopy_crane/cairns_aero_31011_max_temp_data.csv")
+cae.max <- max.cleaner(cae.max.raw)
 # Rainfall/precipitation 1942-2011
 cae.r.raw <- read.csv("climate/canopy_crane/cairns_aero_31011_rainfall_data.csv")
 cae.r <- rain.cleaner(cae.r.raw)
 
 # Port Douglas -- Warner St (Station #31052) ----------
 # Minimum temperature
-ptd.min <- read.csv("climate/canopy_crane/")
+ptd.min.raw <- read.csv("climate/canopy_crane/port_douglas_31052_min_temp_data.csv")
+ptd.min <- min.cleaner(ptd.min.raw)
 # Maximum temperature
-ptd.max <- read.csv("climate/canopy_crane/")
+ptd.max.raw <- read.csv("climate/canopy_crane/port_douglas_31052_max_temp_data.csv")
+ptd.max <- max.cleaner(ptd.max.raw)
 # Rainfall/precipitation
 ptd.r.raw <- read.csv("climate/canopy_crane/port_douglas_31052_rainfall_data.csv")
 ptd.r <- rain.cleaner(ptd.r.raw)
