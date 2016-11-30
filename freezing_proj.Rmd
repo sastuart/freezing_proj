@@ -59,10 +59,6 @@ Local temperature records from stations near each site demonstrate differences i
 
 ```{r climate_fig, echo=FALSE}
 
-nums <- c(2.1,3.4,3.8,3.9,2.9,5)
-barplot(nums)
-plot(mtcars)
-
 # Read in data downloaded from the Australian Bureau of Meterology
 
 ### Data cleaning functions
@@ -139,54 +135,73 @@ ptd.r <- rain.cleaner(ptd.r.raw)
 ### Weather stations for Forty Mile Scrub (fm)
 
 # Mt Suprise Township (Station #30036) ----------
-# Minimum temperature
-msp.min <- read.csv("climate/forty_mile/")
-# Maximum temperature
-msp.max <- read.csv("climate/forty_mile/")
-# Rainfall/precipitation
-msp.r <- read.csv("climate/forty_mile/")
+# Minimum temperature [1957-1978]
+msp.min.raw <- read.csv("climate/forty_mile/mt_surprise_min_temp_data.csv")
+msp.min <- min.cleaner(msp.min.raw)
+# Maximum temperature [1957-1978]
+msp.max.raw <- read.csv("climate/forty_mile/mt_surprise_max_temp_data.csv")
+msp.max <- max.cleaner(msp.max.raw)
+# Rainfall/precipitation [1873-2011]
+msp.r.raw <- read.csv("climate/forty_mile/mt_surprise_rainfall_data.csv")
+msp.r <- rain.cleaner(msp.r.raw)
 
-# Georgetown Post Office (Station #30018) [GIVE YEARS] ----------
-# Minimum temperature
-gpo.min <- read.csv("climate/forty_mile/")
-# Maximum temperature
-gpo.max <- read.csv("climate/forty_mile/")
-# Rainfall/precipitation
-gpo.r <- read.csv("climate/forty_mile/")
+# Georgetown Post Office (Station #30018) ----------
+# Minimum temperature [1894 - 2007]
+gpo.min.raw <- read.csv("climate/forty_mile/georgetown_post_office_min_temp_data.csv")
+gpo.min <- min.cleaner(gpo.min.raw)
+# Maximum temperature [1901-2007]
+gpo.max.raw <- read.csv("climate/forty_mile/georgetown_post_office_max_temp_data.csv")
+gpo.max <- max.cleaner(gpo.max.raw)
+# Rainfall/precipitation [1872-2009]
+gpo.r.raw <- read.csv("climate/forty_mile/georgetown_post_office_rainfall_data.csv")
+gpo.r <- rain.cleaner(gpo.r.raw)
 
-# Georgetown Airport (Station #30124) [GIVE YEARS] ----------
-# Minimum temperature
-gap.min <- read.csv("climate/forty_mile/")
-# Maximum temperature
-gap.max <- read.csv("climate/forty_mile/")
-# Rainfall/precipitation
-gap.r <- read.csv("climate/forty_mile/")
+# Georgetown Airport (Station #30124) ----------
+# Minimum temperature [2004 - 2011]
+gap.min.raw <- read.csv("climate/forty_mile/georgetown_airport_min_temp_data.csv")
+gap.min <- min.cleaner(gap.min.raw)
+# Maximum temperature [2004 - 2011]
+gap.max.raw <- read.csv("climate/forty_mile/georgetown_airport_max_temp_data.csv")
+gap.max <- max.cleaner(gap.max.raw)
+# Rainfall/precipitation [2004 - 2011]
+gap.r.raw <- read.csv("climate/forty_mile/georgetown_airport_rainfall_data.csv")
+gap.r <- rain.cleaner(gap.r.raw)
 
 # Charters Towers Post Office (Station #34002) [GIVE YEARS] ----------
 # Minimum temperature
-ctp.min <- read.csv("climate/forty_mile/")
+ctp.min.raw <- read.csv("climate/forty_mile/charters_towers_post_office_min_temp_data.csv")
+ctp.min <- min.cleaner(ctp.min.raw)
 # Maximum temperature
-ctp.max <- read.csv("climate/forty_mile/")
+ctp.max.raw <- read.csv("climate/forty_mile/charters_towers_post_office_max_temp_data.csv")
+cpt.max <- max.cleaner(ctp.max.raw)
 # Rainfall/precipitation
-ctp.r <- read.csv("climate/forty_mile/")
+ctp.r.raw <- read.csv("climate/forty_mile/charters_towers_post_office_rainfall_data.csv")
+ctp.r <- rain.cleaner(ctp.r.raw)
 
 # Charters Towers Airport (Station #34084) [GIVE YEARS] ----------
 # Minimum temperature
-ctp.min <- read.csv("climate/forty_mile/")
+ctp.min.raw <- read.csv("climate/forty_mile/charters_towers_airport_min_temp_data.csv")
+ctp.min <- min.cleaner(ctp.min.raw)
 # Maximum temperature
-ctp.max <- read.csv("climate/forty_mile/")
+ctp.max.raw <- read.csv("climate/forty_mile/charters_towers_airport_max_temp_data.csv")
+ctp.max <- max.cleaner(ctp.max)
 # Rainfall/precipitation
-ctp.r <- read.csv("climate/forty_mile/")
+ctp.r.raw <- read.csv("climate/forty_mile/charters_towers_airport_rainfall_data.csv")
+ctp.r <- rain.cleaner(ctp.r.raw)
+
 
 ### Weather stations for Mount Field National Park (mf)
 
 # Bushy Park Estates (Station #95003) ----------
 # Minimum temperature
-bpe.min <- read.csv("climate/mount_field/")
+bpe.min.raw <- read.csv("climate/mount_field/bushy_park_min_temp_data.csv")
+bpe.min <- min.cleaner(bpe.min.raw)
 # Maximum temperature
-bpe.max <- read.csv("climate/mount_field/")
+bpe.max.raw <- read.csv("climate/mount_field/bushy_park_max_temp_data.csv")
+bpe.max <- max.cleaner(bpe.max.raw)
 # Rainfall/precipitation
-bpe.r <- read.csv("climate/mount_field/")
+bpe.r.raw <- read.csv("climate/mount_field/bushy_park_rainfall_data.csv")
+bpe.r <- rain.cleaner(bpe.r.raw)
 
 # Maydena Post Office (Station #95063) ----------
 # Minimum temperature
